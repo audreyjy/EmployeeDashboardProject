@@ -75,15 +75,16 @@ WSGI_APPLICATION = 'EmployeeDashboard.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default':{
-#     'ENGINE':'django.db.backends.postgresql',
-#     'NAME':'CHANGEME',
-#     'USER':'postgres',
-#     'PASSWORD':'CHANGEME',
-#     'HOST':'CHANGEME' # use localhost to connect to local database - will be using RDS tho
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'school_db',
+        'USER': 'postgres',
+        'PASSWORD': 'SuperSecurePassword!',
+        'HOST': 'is405-project.cqzbvzpbvcyg.us-west-2.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 
 # Password validation
