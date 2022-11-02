@@ -57,13 +57,13 @@
             <td>{{e.submitted}}</td>
             <td>{{e.submitted_date}}</td>
             <td>{{e.authorized}}</td>
-            <td>{{e.authroized_to_work_email_sent_date}}</td>
+            <td>{{e.authorization_to_work_email_sent_date|default_if_none:""}}</td>
             <td>{{e.expected_hours_per_week}}</td>
             <td>${{e.payment.payrate}}</td>
-            <td>{{e.payment.last_increase_date}}</td>
-            <td>{{e.terminated}}</td>
-            <td>{{e.termination_date}}</td>
-            <td>{{e.notes}}</td>
+            <td>{{e.payment.last_increase_date|default_if_none:""}}</td>
+            <td>{{e.terminated|default_if_none:""}}</td>
+            <td>{{e.termination_date|default_if_none:""}}</td>
+            <td>{{e.notes|default_if_none:""}}</td>
           </tr>
           {% endfor %}
         </tbody>
