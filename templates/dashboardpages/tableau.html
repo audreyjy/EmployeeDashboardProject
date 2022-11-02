@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+
 <html>
 <head>
 <title>Trends and Data</title>
 </head>
-
+{% extends 'base.html' %} {% load static %} {% block content %}
 <body>
     Dashboard: 
 {% comment %} <script type='text/javascript' src='https://10az.online.tableau.com/javascripts/api/viz_v1.js'></script><div class='tableauPlaceholder' style='width: 1440px; height: 768px;'><object class='tableauViz' width='1440' height='768' style='display:none;'><param name='host_url' value='https%3A%2F%2F10az.online.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='&#47;t&#47;is405tableautrial' /><param name='name' value='EmployeeDashboardProject&#47;Avg_Pay' /><param name='tabs' value='yes' /><param name='toolbar' value='yes' /><param name='showAppBanner' value='false' /></object></div>" {% endcomment %}
@@ -16,3 +17,5 @@
 </body>
 
 </html>
+
+{% endblock %}
