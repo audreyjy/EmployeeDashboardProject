@@ -11,3 +11,10 @@ def indexPageView(request) :
 
 def TableauPageView(request) :
     return render(request, 'dashboardpages/tableau.html')
+
+def NotificationsPageView(request) :
+    job = Job.objects.all()
+    context ={
+        "job": job,
+    }
+    return render(request, 'dashboardpages/notifications.html', context)
