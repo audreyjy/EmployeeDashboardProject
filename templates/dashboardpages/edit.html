@@ -1,0 +1,268 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+<body>
+    <div class="row">
+        <div class="col-sm"></div>
+        <div class="col-sm">
+        {% if one %}
+            <form method="POST" name="edit" action="{% url 'editrec' j_id=one.id %}"> 
+        {% else %}
+            <form method="POST" name="add" action="{% url 'addrec' %}"> 
+        {% endif %}
+            {% csrf_token %}
+            <input type="hidden" default="{{ one.id }}">
+            <fieldset class="form-group">
+                <legend>Create a new Job</legend>
+            <label for="emp">Employee</label>
+            <br>
+            <select name='emp' id="emp" required >
+                <option>select an employee</option>
+                {% for e in emp %}
+                    {% if e.id == one.employee.id %}
+                        <option selected value="{{ e.id }}">{{ e.f_name }}</option>
+                    {% else %}
+                        <option  value="{{ e.id }}">{{ e.f_name }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br>
+        
+            <label for="classcode"> Course Code:</label>
+            <br>
+            <select id="classcode" name="classcode" required> 
+                <option>select a course</option>
+                {% for c in course %}
+                    {% if c.course_code == one.course.course_code%}
+                        <option selected value="{{ c.course_code }}">{{ c.course_code }}</option>
+                    {% else %}
+                        <option value="{{ c.course_code }}">{{ c.course_code }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <br>
+            <label for="semester"> Semester:</label>
+            <br>
+            <select type="text" id="semester" name="semester" >
+                
+                {% if one.semester == "Fall" %}
+                    <option selected value="Fall">Fall</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                {% elif one.semester == "Winter" %}
+                    <option selected value="Winter">Winter</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Spring">Spring</option>
+                {% elif one.semester == "Spring" %}
+                    <option selected value="Spring">Spring</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Fall">Fall</option>
+                {% elif one.semester == "Summer" %}
+                    <option selectede value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                {%else%}
+                    <option value="">select a semester</option>
+                    <option value="Summer">Summer</option>
+                    <option value="Fall">Fall</option>
+                    <option value="Winter">Winter</option>
+                    <option value="Spring">Spring</option>
+                {% endif %}
+            </select>
+            <br>
+            <label for="year"> Year:</label>
+            <br>
+            <input type="number" value="{{ one.year }}"  min="1900" max="2099" step="1" id="year" placeholder="enter a year" name="year" >
+            <br>
+            <label for="position"> Position:</label>
+            <br>
+            <select id="position" name="position" >
+               
+                {% if one.position_type == "TA" %}
+                    <option selected value="TA">TA</option>
+                    <option value="RA">RA</option>
+                    <option value="Student Insturctor">Student Instructor</option>
+                    <option value="Office">Office</option>
+                    <option value="Other">Other</option>
+                {% elif one.position_type == "RA" %}
+                    <option value="TA">TA</option>
+                    <option selected value="RA">RA</option>
+                    <option value="Student Insturctor">Student Instructor</option>
+                    <option value="Office">Office</option>
+                    <option value="Other">Other</option>
+                {% elif one.position_type == "Student Instructor" %}
+                    <option value="TA">TA</option>
+                    <option value="RA">RA</option>
+                    <option selected value="Student Insturctor">Student Instructor</option>
+                    <option value="Office">Office</option>
+                    <option value="Other">Other</option>
+                {% elif one.position_type == "Office" %}
+                    <option value="TA">TA</option>
+                    <option value="RA">RA</option>
+                    <option value="Student Insturctor">Student Instructor</option>
+                    <option selected value="Office">Office</option>
+                    <option value="Other">Other</option>
+                {% elif one.position_type == "Other" %}
+                    <option value="TA">TA</option>
+                    <option value="RA">RA</option>
+                    <option value="Student Insturctor">Student Instructor</option>
+                    <option value="Office">Office</option>
+                    <option selected value="Other">Other</option>
+                {%else%}
+                    <option selected value="">select a position</option>
+                    <option value="TA">TA</option>
+                    <option value="RA">RA</option>
+                    <option value="Student Insturctor">Student Instructor</option>
+                    <option value="Office">Office</option>
+                    <option value="Other">Other</option>
+                {% endif%}
+            </select>
+            <br>
+            <label  for="hiredate"> Hire Date:</label>
+            <br>
+            <input value="{{ one.hire_date }}" type="date" id="hiredate" placeholder="hire date" name="hiredate">
+            <br>
+            <label for="program"> Program:</label>
+            <br>
+            <select type="text" id="program" name="program">
+                {% if one.year_in_program == "MSIM" %}
+                    <option selected value="MISM">MISM</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MPA">MPA</option>
+                    <option value="Macc">Macc</option>
+                    <option value="MSB Core">MSB Core</option>
+                    <option value="Other Major">Other Major</option>
+                {% elif one.year_in_program == "MBA" %}
+                    <option value="MISM">MISM</option>
+                    <option selected value="MBA">MBA</option>
+                    <option value="MPA">MPA</option>
+                    <option value="Macc">Macc</option>
+                    <option value="MSB Core">MSB Core</option>
+                    <option value="Other Major">Other Major</option>
+                {% elif one.year_in_program == "MPA" %}
+                    <option value="MISM">MISM</option>
+                    <option value="MBA">MBA</option>
+                    <option selected value="MPA">MPA</option>
+                    <option value="Macc">Macc</option>
+                    <option value="MSB Core">MSB Core</option>
+                    <option value="Other Major">Other Major</option>
+                {% elif one.year_in_program == "Macc" %}
+                    <option value="MISM">MISM</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MPA">MPA</option>
+                    <option selected value="Macc">Macc</option>
+                    <option value="MSB Core">MSB Core</option>
+                    <option value="Other Major">Other Major</option>
+                {% elif one.year_in_program == "MSB Core" %}
+                    <option value="MISM">MISM</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MPA">MPA</option>
+                    <option value="Macc">Macc</option>
+                    <option selected value="MSB Core">MSB Core</option>
+                    <option value="Other Major">Other Major</option>
+                {% elif one.year_in_program == "Other Major"%}   
+                    <option value="MISM">MISM</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MPA">MPA</option>
+                    <option value="Macc">Macc</option>
+                    <option value="MSB Core">MSB Core</option>
+                    <option selected value="Other Major">Other Major</option>
+                {%else%}
+                    <option selected value="">select a program</option>    
+                    <option value="MISM">MISM</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MPA">MPA</option>
+                    <option value="Macc">Macc</option>
+                    <option value="MSB Core">MSB Core</option>
+                    <option value="Other Major">Other Major</option>
+                {% endif%}
+                
+            </select>
+            <br>
+            <label for="gradtuit"> Grad Tuition:</label>
+            {% if one.pay_grad_tuition == True %}
+                <input checked type="checkbox" value="1" id="gradtuit" name="grad" >
+            {% else %}
+                <input type="checkbox" value="1" id="gradtuit" name="grad" >
+            {% endif %}
+            <br>
+            <label for="namechange"> Name Changed:</label>
+
+            {% if one.name_change_complete == True %}
+                <input checked type="checkbox" value="1" id="namechange" name="namechange">
+            {% else %}
+                <input  type="checkbox" value="1" id="namechange" name="namechange">
+            {% endif %}
+            <br>
+            <label for="qualtrics"> Qualtrics:</label>
+            {% if one.qualtrics == True %}
+                <input checked type="checkbox" value="1" id="qualtrics" name="qual">
+            {% else %}
+                <input  type="checkbox" value="1" id="qualtrics" name="qual">
+            {% endif %}
+            <br>
+            <label for="submitted"> Submitted:</label>
+            {% if one.submitted == True %}
+                <input checked type="checkbox" value="1" id="submitted" name="submitted">
+            {% else %}
+                <input type="checkbox" value="1" id="submitted" name="submitted">
+            {% endif %}
+            <br>
+            <label  for="subdate"> Submit Date:</label>
+            <br>
+            <input value="{{ one.submitted_date }}" type="date" id="subdate" name="submitdate" >
+            <br>
+            <label for="auth"> Authorized:</label>
+            {% if one.authorized == True%}
+                <input value="1" checked type="checkbox" id="auth" name="auth">
+            {% else %}
+                <input value="1"  type="checkbox" id="auth" name="auth">
+            {% endif %}
+            <br>
+            <label for="authdate"> Authorized Date:</label>
+            <br>
+            <input value="{{ one.authorization_to_work_email_sent_date }}" type="date" id="authdate" name="authdate" >
+            <br>
+            <label  for="hours"> Hours:</label>
+            <br>
+            <input value="{{ one.expected_hours_per_week }}" type="number" min="0" max="39" id="hours" required  name="hours">
+            <br>
+            <label for="pay"> Pay Rate Per Hour:</label>
+            <br>
+            $<input value="{{ one.payment.payrate }}" type="number" min="1" step="any" id="pay" required name="payrate">
+            <br>
+            <label for="lastraise"> Last Pay Increase Date:</label>
+            <br>
+            <input value="{{ one.payment.last_increase_date }}" type="date" id="lastraise" name="lastraise" >
+            <br>
+            <label for="terminated"> Terminated:</label>
+            {% if one.terminated == True%}
+                <input checked type="checkbox" value="1" id="terminated" name="terminated" >
+            {% else %}
+                <input type="checkbox" value="1" id="terminated" name="terminated" >
+            {% endif %}
+            <br>
+            <label for="termdate"> Terminated Date:</label>
+            <br>
+            <input value="{{ one.termination_date }}"  type="date" id="termdate" name="termdate" >
+            <br>
+            <label for="note"> Notes:</label>
+            <br>
+            <textarea rows="4" cols="50" id="note" name="note" >{{ one.notes }}</textarea>
+
+
+
+
+            </fieldset>
+            <br><br>
+            <button type="submit" >Submit Data</button>
+        </form>
+    </div>
+    <div class="col-sm"></div>
+    </div>
+</body>
+{% endblock %}

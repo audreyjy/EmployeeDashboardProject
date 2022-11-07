@@ -31,7 +31,7 @@
             <th scope="col">Last Pay Increase Date</th>
             <th scope="col">Terminated</th>
             <th scope="col">Termination Date</th>
-            <th scope="col">Notes</th>
+            <th scope="col">actions</th>
           </tr>
         </thead>
         <tbody>
@@ -63,7 +63,9 @@
             <td>{{e.payment.last_increase_date|default_if_none:""}}</td>
             <td>{{e.terminated|default_if_none:""}}</td>
             <td>{{e.termination_date|default_if_none:""}}</td>
-            <td>{{e.notes|default_if_none:""}}</td>
+            <!-- <td>{{e.notes|default_if_none:""}}</td> -->
+            <td><form action="{% url 'edit' j_id=e.id %}"><button  type="submit" class="btn btn-warning">Edit</button></form></td>
+            <td><form action="{% url 'del' j_id=e.id %}"><button type="submit" class="btn btn-danger" >Delete</button></form></td>
           </tr>
           {% endfor %}
         </tbody>
