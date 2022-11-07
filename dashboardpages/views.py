@@ -118,12 +118,15 @@ def EditPageViewPost(request, j_id):
     return render(request, 'dashboardpages/index.html', context)
 
 def DelPageView(request, j_id):
-    job = Job.objects.get(pk=j_id)
-    pay = Payment.objects.get(pk=job.payment.id)
+    try:
+        job = Job.objects.get(pk=j_id)
+        pay = Payment.objects.get(pk=job.payment.id)
 
-    job.delete()
-    pay.delete()
-
+        job.delete()
+        pay.delete()
+    except:
+        pass
+    
     data = Job.objects.all
     context = {
         'job': data
