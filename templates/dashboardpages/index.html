@@ -3,6 +3,7 @@
 
 
 
+
 {% comment %} <div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Filter By
@@ -88,7 +89,12 @@
 <body style="height:1000px;">
     <table class="table">
         <thead>
+<!-- <body style="height:1000px;"> -->
+    <table class="table table-striped">
+        <thead class="table-light">
           <tr>
+            <th scope="col">Actions</th>
+            <th></th>
             <th scope="col">BYU ID</th>
             <th scope="col">First</th>
             <th scope="col">Last</th>
@@ -115,12 +121,14 @@
             <th scope="col">Last Pay Increase Date</th>
             <th scope="col">Terminated</th>
             <th scope="col">Termination Date</th>
-            <th scope="col">Notes</th>
+            
           </tr>
         </thead>
         <tbody>
           {% for e in job %}
           <tr>
+            <td><form action="{% url 'edit' j_id=e.id %}"><button  type="submit" class="btn btn-warning">Edit</button></form></td>
+            <td><form action="{% url 'del' j_id=e.id %}"><button type="submit" class="btn btn-danger" >Delete</button></form></td>
             <td>{{e.employee.byu_id}}</td>
             <td>{{e.employee.f_name}}</td>
             <td>{{e.employee.l_name}}</td>
@@ -147,12 +155,13 @@
             <td>{{e.payment.last_increase_date|default_if_none:""}}</td>
             <td>{{e.terminated|default_if_none:""}}</td>
             <td>{{e.termination_date|default_if_none:""}}</td>
-            <td>{{e.notes|default_if_none:""}}</td>
+            <!-- <td>{{e.notes|default_if_none:""}}</td> -->
+            
           </tr>
           {% endfor %}
         </tbody>
       </table>
-</body>
+<!-- </body> -->
 
 
 

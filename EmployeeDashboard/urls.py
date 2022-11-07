@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from dashboardpages.views import TableauPageView
 from dashboardpages.views import filterPageView
+from dashboardpages.views import NotificationsPageView
 
 urlpatterns = [
     path("", include("dashboardpages.urls")), 
     path('admin/', admin.site.urls),
     path("tableau/", TableauPageView, name="tableau"),
     path("filteredEmps/", filterPageView, name="filteredEmps"),
+    path("notifications/", NotificationsPageView, name="notifications"),
 ]
