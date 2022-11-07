@@ -20,7 +20,7 @@ from dashboardpages.views import NotificationsPageView
 
 
 urlpatterns = [
-    
+    path("", include("dashboardpages.urls")), 
     path('admin/', admin.site.urls),
     path("tableau/", TableauPageView, name="tableau"),
     path("notifications/", NotificationsPageView, name="notifications"),
