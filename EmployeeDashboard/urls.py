@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from dashboardpages.views import TableauPageView
+from dashboardpages.views import NotificationsPageView
+
 
 urlpatterns = [
     
     path('admin/', admin.site.urls),
-    path("", include("dashboardpages.urls"))
-    
+    path("tableau/", TableauPageView, name="tableau"),
+    path("notifications/", NotificationsPageView, name="notifications"),
 ]

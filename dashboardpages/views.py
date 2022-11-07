@@ -131,3 +131,13 @@ def DelPageView(request, j_id):
     return render(request, 'dashboardpages/index.html', context)
 
 # Create your views here.
+
+def TableauPageView(request) :
+    return render(request, 'dashboardpages/tableau.html')
+
+def NotificationsPageView(request) :
+    job = Job.objects.all()
+    context ={
+        "job": job,
+    }
+    return render(request, 'dashboardpages/notifications.html', context)
