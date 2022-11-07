@@ -1,6 +1,94 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 
+
+
+
+{% comment %} <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Filter By
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" name="semester" id="semester" value="" href="#">Semester</a></li>
+
+    <li><a class="dropdown-item" name="professor" id="professor" value="" href="#">Professor</a></li>
+
+    <li><a class="dropdown-item" name="position" id="position" value="" href="#">Position</a></li>
+  </ul>
+</div> {% endcomment %}
+
+
+<form name="form" method="get" action="{% url 'filteredEmps' %}">
+  <div class="p-3 text-bg-light">
+    <label for="semester" style="margin-left:10px;"><b>Semester</b></label>
+      <div class="search_categories" style="margin-left:10px;">
+          <div class="select">
+              <select name="semester_test" id="semester">
+                  <option value="" selected="selected">All</option>   
+                  <option value="Winter">Winter</option>   
+                  <option value="Spring">Spring</option>   
+                  <option value="Summer">Summer</option>   
+                  <option value="Fall">Fall</option>   
+              </select>
+          </div>
+      </div>
+
+    <label for="year" style="margin-left:10px;"><b>Year</b></label>
+      <div class="search_categories" style="margin-left:10px;">
+          <div class="select">
+            <select name="year_test" id="year">
+              <option value="" selected="selected">All</option>   
+              <option value="1901">1901</option>  
+              <option value="1902">1902</option>    
+              <option value="2019">2019</option>   
+              <option value="2020">2020</option>   
+              <option value="2021">2021</option>   
+              <option value="2022">2022</option>   
+          </select>
+          </div>
+      </div>
+
+    {% comment %} <label for="profeessor" style="margin-left:10px;"><b>Professor</b></label>
+      <div class="search_categories" style="margin-left:10px;">
+          <div class="select">
+            <select name="professor" id="professor">
+              <option value="" selected="selected">All</option>
+              {% for e in job %}:
+                <option value=""> {{ e.professsor }}</option>
+              {% endfor %}       
+          </select>
+          </div>
+      </div> {% endcomment %}
+
+    <label for="position" style="margin-left:10px;"><b>Position</b></label>
+      <div class="search_categories" style="margin-left:10px;">
+          <div class="select">
+            <select name="position_type_test" id="position_type">
+              <option value="" selected="selected">All</option>   
+              <option value="RA">RA</option>   
+              <option value="TA">TA</option>   
+              <option value="Office">Office</option>   
+              <option value="Student Instructor">Student Instructor</option>   
+              <option value="Other">Other</option>   
+          </select>
+          </div>
+      </div>
+
+      <div style = "margin-left: 10px; margin-top: 20px">
+        <button type="submit" class="btn btn-secondary"> Submit </button>
+      </div>
+  </div>
+  {% csrf_token %}
+</form>
+
+
+
+
+   
+
+<body style="height:1000px;">
+    <table class="table">
+        <thead>
 <!-- <body style="height:1000px;"> -->
     <table class="table table-striped">
         <thead class="table-light">
@@ -78,3 +166,4 @@
 
 
 {% endblock %}
+

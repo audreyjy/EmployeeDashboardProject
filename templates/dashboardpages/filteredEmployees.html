@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+
+
+{% comment %} <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Filter By
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" name="semester" id="semester" value="" href="#">Semester</a></li>
+
+    <li><a class="dropdown-item" name="professor" id="professor" value="" href="#">Professor</a></li>
+
+    <li><a class="dropdown-item" name="position" id="position" value="" href="#">Position</a></li>
+  </ul>
+</div> {% endcomment %}
+
+
+<body style="height:1000px;">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">BYU ID</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">International</th>
+            <th scope="col">BYU Name</th>
+            <th scope="col">Class Code</th>
+            <th scope="col">Semester</th>
+            <th scope="col">Year</th>
+            <th scope="col">Position</th>
+            <th scope="col">Hire Date</th>
+            <th scope="col">Program</th>
+            <th scope="col">Grad Tuition</th>
+            <th scope="col">Name Changed</th>
+            <th scope="col">Qualtrics</th>
+            <th scope="col">Submitted</th>
+            <th scope="col">Submitted Date</th>
+            <th scope="col">Authorized</th>
+            <th scope="col">Authorized Date</th>
+            <th scope="col">Hours</th>
+            <th scope="col">Pay Rate</th>
+            <th scope="col">Last Pay Increase Date</th>
+            <th scope="col">Terminated</th>
+            <th scope="col">Termination Date</th>
+            <th scope="col">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for e in job %}
+          <tr>
+            <td>{{e.employee.byu_id}}</td>
+            <td>{{e.employee.f_name}}</td>
+            <td>{{e.employee.l_name}}</td>
+            <td>{{e.employee.gender}}</td>
+            <td>{{e.employee.email}}</td>
+            <td>{{e.employee.phone}}</td>
+            <td>{{e.employee.international}}</td>
+            <td>{{e.employee.byu_name}}</td>
+            <td>{{e.course.course_code}}</td>
+            <td>{{e.semester}}</td>
+            <td>{{e.year}}</td>
+            <td>{{e.position_type}}</td>
+            <td>{{e.hire_date}}</td>
+            <td>{{e.year_in_program}}</td>
+            <td>{{e.pay_grad_tuition}}</td>
+            <td>{{e.name_change_complete}}</td>
+            <td>{{e.qualtrics}}</td>
+            <td>{{e.submitted}}</td>
+            <td>{{e.submitted_date}}</td>
+            <td>{{e.authorized}}</td>
+            <td>{{e.authorization_to_work_email_sent_date|default_if_none:""}}</td>
+            <td>{{e.expected_hours_per_week}}</td>
+            <td>${{e.payment.payrate}}</td>
+            <td>{{e.payment.last_increase_date|default_if_none:""}}</td>
+            <td>{{e.terminated|default_if_none:""}}</td>
+            <td>{{e.termination_date|default_if_none:""}}</td>
+            <td>{{e.notes|default_if_none:""}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+</body>
+
+
+
+{% endblock %}
+
